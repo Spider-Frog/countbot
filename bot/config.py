@@ -6,8 +6,13 @@ configini.read('config.ini')
 
 class Config:
     token = configini.String('bot', 'token')
+
     if configini.Boolean('bot', 'debug', default=False):
         logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
-    class Messages:
-        wrong_number = configini.String('messages', 'wrong_number', default="Wrong number! start again...")
+    class Reaction:
+        correct = configini.String('reaction', 'correct', default='✅')
+        wrong = configini.String('reaction', 'wrong', default='❌')
+        wrong_message = configini.String('reaction', 'wrong_message', default="{user} ruined it at {number}! Next number is 1.")
